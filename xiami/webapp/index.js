@@ -1,0 +1,1 @@
+exports.Xiami = require('./Xiami')

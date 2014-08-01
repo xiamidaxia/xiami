@@ -1,0 +1,36 @@
+{
+  "name": "xiamidaxia",
+  "version": "0.0.1",
+  "description": "a simple realtime framework",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiamidaxia/xiami"
+  },
+  "keywords": [
+    "xiami",
+    "xpm",
+    "meteor"
+  ],
+  "author": "xiamidaxia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiamidaxia/xiami/issues"
+  },
+  "homepage": "https://github.com/xiamidaxia/xiami",
+  "dependencies": {
+    "cli-color": "^0.3.2",
+    "connect": "^2.9.0",
+    "faye-websocket": "^0.7.2",
+    "fibers": "^1.0.1",
+    "mongodb": "^1.4.7",
+    "sockjs": "^0.3.9",
+    "useragent": "^2.0.9"
+  }
+}

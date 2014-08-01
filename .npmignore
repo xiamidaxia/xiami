@@ -1,0 +1,11 @@
+.DS_Store
+build
+npm-debug.log
+node_modules
+*.sublime*
+tmp
+.idea
+
+/test
+/dest
+/bower_components

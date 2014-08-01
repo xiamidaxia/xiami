@@ -4,6 +4,7 @@ Package.describe({
 });
 
 Package.all({
+    files: "**/*",
     "imports": "meteor",
     "test_files": [
         "test/ejson_test.js",

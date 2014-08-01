@@ -4,6 +4,7 @@ Package.describe({
 });
 
 Package.all({
+    files: "**/*",
     imports: "meteor",
     "main": "random.js",
     "test_files": ["random_tests.js"]

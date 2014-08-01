@@ -4,5 +4,6 @@ Package.describe({
 });
 
 Package.all({
+    files: "**/*",
     main: "ordered_dict.js"
 });

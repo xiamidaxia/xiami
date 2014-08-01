@@ -3,6 +3,7 @@ Package.describe({
 });
 
 Package.all({
+    files: "**/*",
     "main": "underscore.js",
     "test_files": "test.js"
 })

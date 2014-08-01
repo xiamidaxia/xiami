@@ -4,6 +4,7 @@ Package.describe({
 });
 
 Package.server({
+    files: "**/*",
     main: "routepolicy.js",
     test_files: ["routepolicy_tests.js"]
 })

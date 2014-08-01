@@ -4,6 +4,7 @@ Package.describe({
 })
 
 Package.all({
+    files: "**/*",
     imports: "meteor",
     "main": "deps.js",
     "test_files": ["deps_tests.js"]

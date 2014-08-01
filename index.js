@@ -16,6 +16,7 @@ var xpm = require('xpm').serverCreate({
 //xpm.require('xiami/webapp')
 
 xpm.test([
+    "meteor/ejson",
     "meteor/mongo-livedata"
-], {bail:true})
+], {bail:true, timeout: 10000})
 

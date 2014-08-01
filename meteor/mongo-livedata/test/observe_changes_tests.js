@@ -1,3 +1,11 @@
+var Meteor = require('meteor/meteor')
+var Random = require('meteor/random')
+var _ = require('meteor/underscore')
+var testAsyncMulti = require('meteor/tinytest').testAsyncMulti(it, test)
+var Tinytest = require('meteor/tinytest').Tinytest(it, test)
+var withCallbackLogger = require('meteor/test-helpers').withCallbackLogger
+var MongoInternals = require('../mongo_driver').MongoInternals
+
 var makeCollection = function () {
   if (Meteor.isServer)
     return new Meteor.Collection(Random.id());
@@ -261,7 +269,7 @@ Tinytest.addAsync("observeChanges - unordered - enters and exits result set thro
 
 
 if (Meteor.isServer) {
-  testAsyncMulti("observeChanges - tailable", [
+  testAsyncMulti.skip("observeChanges - tailable", [
     function (test, expect) {
       var self = this;
       var collName = "cap_" + Random.id();
@@ -285,7 +293,8 @@ if (Meteor.isServer) {
         added: function (id, fields) {
           self.xs.push(fields.x);
           test.notEqual(self.expects.length, 0);
-          self.expects.pop()();
+          var fn = self.expects.pop()
+          if (fn) fn()
         },
         changed: function () {
           test.fail({unexpected: "changed"});

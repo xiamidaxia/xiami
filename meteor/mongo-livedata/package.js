@@ -27,9 +27,19 @@ Package.server({
         // performance.
         "binary-heap"
     ],
+    files: ["*"],
     "main_preload": true,
-    "test_imports": "test-helpers",
-    "test_files": ["test/collection_tests.js", "test/doc_fetcher_tests.js"]
+    "test_imports": [
+        "test-helpers",
+        "tinytest"
+    ],
+    "test_files": [
+        "test/collection_tests.js",
+        "test/doc_fetcher_tests.js",
+        "test/mongo_livedata_tests.js",
+        "test/observe_changes_tests.js",
+        "test/oplog_tests.js"
+        ]
 })
 
 /*Package.on_test(function (api) {

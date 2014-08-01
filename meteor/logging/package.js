@@ -4,6 +4,7 @@ Package.describe({
 })
 
 Package.all({
+    files: "**/*",
     "imports": ["ejson", "meteor"],
     "main": "logging.js",
     "test_files": ['logging_test.js']

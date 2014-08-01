@@ -4,6 +4,7 @@ Package.describe({
 });
 
 Package.all({
+    files: "**/*",
     "imports": ['ejson'],
     "main": "id-map.js"
 })

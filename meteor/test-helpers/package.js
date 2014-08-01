@@ -4,6 +4,7 @@ Package.describe({
 })
 
 Package.all({
+    files: "**/*",
     test_files:[],
-    imports: ["deps","meteor"]
+    imports: ["deps","meteor","random"]
 })

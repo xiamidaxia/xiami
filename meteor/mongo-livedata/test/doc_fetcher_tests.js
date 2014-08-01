@@ -4,12 +4,10 @@ var Random = require('meteor/random')
 var Meteor = require('meteor/meteor')
 var MongoTest = require('../mongo_driver').MongoTest
 var MongoInternals = require('../mongo_driver').MongoInternals
-var multiTest = require('meteor/test-helpers').multiTest(it, test)
-var test = require('meteor/test-helpers').meteorTest(test)
-var it = require('meteor/test-helpers').meteorIt(it)
+var testAsyncMulti = require('meteor/tinytest').testAsyncMulti(it, test)
 
-multiTest("mongo-livedata - doc fetcher", [
-  function (expect) {
+testAsyncMulti("mongo-livedata - doc fetcher", [
+  function (test, expect) {
     var self = this;
     var collName = "docfetcher-" + Random.id();
     var collection = new Meteor.Collection(collName);

@@ -36,5 +36,5 @@ exports.pollUntil = function (expect, f, timeout, step, noFail) {
     );
 };
 exports.ReactiveVar = require('./reactivevar')
-
-exports.multiTest = require('./multiTest')
+exports.SeededRandom = require('./seeded_random')
+exports.withCallbackLogger = require('./callback_logger')

@@ -4,6 +4,7 @@ Package.describe({
 });
 
 Package.all({
+    files: "**/*",
     "imports": ['ejson', 'meteor'],
     main: "match.js",
     test_imports: ['test-helpers'],

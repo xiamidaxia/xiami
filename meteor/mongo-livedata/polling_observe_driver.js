@@ -1,6 +1,5 @@
 var _ = require('meteor/underscore')
 var Meteor = require('meteor/meteor')
-var listenAll = require('./mongo_driver').listenAll
 var DDPServer = require('meteor/livedata').DDPServer
 var LocalCollection = require('meteor/minimongo').LocalCollection
 var Package = {}
@@ -40,6 +39,7 @@ var PollingObserveDriver = exports.PollingObserveDriver = function (options) {
   // XXX figure out if we still need a queue
   self._taskQueue = new Meteor._SynchronousQueue();
 
+  var listenAll = require('./mongo_driver').listenAll
   var listenersHandle = listenAll(
     self._cursorDescription, function (notification) {
       // When someone does a transaction that might affect us, schedule a poll

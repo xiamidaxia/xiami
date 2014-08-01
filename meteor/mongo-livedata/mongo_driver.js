@@ -20,7 +20,9 @@ var Minimongo = require('meteor/minimongo').Minimongo
 var Hook = require('meteor/callback-hook')
 var DocFetcher = require("./doc_fetcher")
 var OplogHandle = require('./oplog_tailing').OplogHandle
-
+var ObserveMultiplexer = require('./observe_multiplex').ObserveMultiplexer
+var ObserveHandle = require('./observe_multiplex').ObserveHandle
+var PollingObserveDriver = require('./polling_observe_driver').PollingObserveDriver
 var MongoInternals = exports.MongoInternals = {};
 var MongoTest = exports.MongoTest = {};
 var Package = {}
@@ -805,7 +807,7 @@ MongoConnection.prototype._createSynchronousCursor = function(
     // find the first document (instead of creating an index on ts). This is a
     // very hard-coded Mongo flag which only works on the oplog collection and
     // only works with the ts field.
-    if (cursorDescription.collectionName === OPLOG_COLLECTION &&
+    if (cursorDescription.collectionName === require('./oplog_tailing').OPLOG_COLLECTION &&
         cursorDescription.selector.ts) {
       mongoOptions.oplogReplay = true;
     }
@@ -1039,6 +1041,7 @@ MongoConnection.prototype._observeChanges = function (
   });
 
   var observeHandle = new ObserveHandle(multiplexer, callbacks);
+  var OplogObserveDriver = require('./oplog_observe_driver')
 
   if (firstHandle) {
     var matcher, sorter;

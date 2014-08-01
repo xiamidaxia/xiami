@@ -1,6 +1,23 @@
+var _ = require('meteor/underscore')
+var Fiber = require('fibers');
+var Future = require('fibers/future', true);
+var Random = require('meteor/random')
+var Meteor = require('meteor/meteor')
+var check = require('meteor/check').check
+var Match = require('meteor/check').Match
+var DDPServer = require('meteor/livedata').DDPServer
+var EJSON = require('meteor/ejson')
+var MongoInternals = require('../mongo_driver').MongoInternals
+var testAsyncMulti = require('meteor/tinytest').testAsyncMulti(it, test)
+var Tinytest = require('meteor/tinytest').Tinytest(it, test)
+var EJSONTest = require('meteor/ejson/test/custom_models_for_tests.js')
+var DDP = require('meteor/livedata').DDP
+var SeededRandom = require('meteor/test-helpers').SeededRandom
+var pollUntil = require('meteor/test-helpers').pollUntil
+Fiber(function() {
+
 // This is a magic collection that fails its writes on the server when
 // the selector (or inserted document) contains fail: true.
-
 var TRANSFORMS = {};
 
 // We keep track of the collections, so we can refer to them by name
@@ -2963,3 +2980,5 @@ Meteor.isServer && Tinytest.add("mongo-livedata - insert and retrieve EJSON user
   coll.insert(new Meteor.Collection.ObjectID());
   coll.find({}).fetch();
 });
+
+})

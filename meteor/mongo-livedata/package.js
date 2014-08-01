@@ -28,7 +28,8 @@ Package.server({
         "binary-heap"
     ],
     "main_preload": true,
-    "test_files": []
+    "test_imports": "test-helpers",
+    "test_files": ["test/collection_tests.js", "test/doc_fetcher_tests.js"]
 })
 
 /*Package.on_test(function (api) {

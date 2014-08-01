@@ -1,6 +1,7 @@
 var Meteor = require('meteor/meteor')
+var _ = require('meteor/underscore')
 //exports.ReactiveVar = require('./reactivevar')
-exports.fixTest = require('./meteor_test_fixed')
+_.extend(exports,require('./meteor_test_fixed'))
 
 // Call `fn` periodically until it returns true.  If it does, call
 // `success`.  If it doesn't before the timeout, call `failed`.
@@ -35,3 +36,5 @@ exports.pollUntil = function (expect, f, timeout, step, noFail) {
     );
 };
 exports.ReactiveVar = require('./reactivevar')
+
+exports.multiTest = require('./multiTest')

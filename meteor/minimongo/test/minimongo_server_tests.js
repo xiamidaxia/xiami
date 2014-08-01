@@ -1,7 +1,6 @@
 var Minimongo = require('meteor/minimongo').Minimongo
 var _ = require('meteor/underscore')
-var fixTest = require('meteor/test-helpers').fixTest
-test = fixTest.asMeteorTest(test)
+var test = require('meteor/test-helpers').meteorTest(test)
 
 it("minimongo - modifier affects selector", function(done) {
     function testSelectorPaths(sel, paths, desc) {

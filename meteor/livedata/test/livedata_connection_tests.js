@@ -6,11 +6,11 @@ var Deps = require('meteor/deps')
 var DDP = require('../common/common').DDP
 var LocalCollection = require('meteor/minimongo').LocalCollection
 var ReactiveVar = require('meteor/test-helpers').ReactiveVar
-var fixTest = require('meteor/test-helpers').fixTest
+var fixTest = require('meteor/test-helpers')
 var pollUntil = require('meteor/test-helpers').pollUntil
 var StubStream = require('./stub_stream')
-it = fixTest.itInFiber(it)
-test = fixTest.asMeteorTest(test)
+it = fixTest.meteorIt(it)
+test = fixTest.meteorTest(test)
 
 var newConnection = function (stream) {
   // Some of these tests leave outstanding methods with no result yet

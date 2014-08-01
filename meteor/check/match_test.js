@@ -1,10 +1,10 @@
 var _ = require('meteor/underscore')
-var fixTest = require('meteor/test-helpers').fixTest
+var fixTest = require('meteor/test-helpers')
 var check = require('./match').check
 var Match = require('./match').Match
 var EJSON = require('meteor/ejson')
-it = fixTest.itInFiber(it)
-test = fixTest.asMeteorTest(test)
+it = fixTest.meteorIt(it)
+test = fixTest.meteorTest(test)
 
 it("check - check", function (done) {
   var matches = function (value, pattern) {

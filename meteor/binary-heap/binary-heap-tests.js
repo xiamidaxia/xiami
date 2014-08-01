@@ -1,7 +1,7 @@
 var _ = require('meteor/underscore')
 var MaxHeap = require('./max-heap')
 var MinMaxHeap = require('./min-max-heap')
-var test = require('meteor/test-helpers').fixTest.asMeteorTest(test)
+var test = require('meteor/test-helpers').meteorTest(test)
 
 
 it("binary-heap - simple max-heap tests", function (done) {

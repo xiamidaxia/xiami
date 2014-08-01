@@ -1,8 +1,15 @@
-var Fiber = Npm.require('fibers');
-var Future = Npm.require('fibers/future');
+var Fiber = require('fibers');
+var Future = require('fibers/future', true);
+var Random = require('meteor/random')
+var Meteor = require('meteor/meteor')
+var MongoTest = require('../mongo_driver').MongoTest
+var MongoInternals = require('../mongo_driver').MongoInternals
+var multiTest = require('meteor/test-helpers').multiTest(it, test)
+var test = require('meteor/test-helpers').meteorTest(test)
+var it = require('meteor/test-helpers').meteorIt(it)
 
-testAsyncMulti("mongo-livedata - doc fetcher", [
-  function (test, expect) {
+multiTest("mongo-livedata - doc fetcher", [
+  function (expect) {
     var self = this;
     var collName = "docfetcher-" + Random.id();
     var collection = new Meteor.Collection(collName);

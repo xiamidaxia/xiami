@@ -19,7 +19,7 @@ var LocalCollection = require('meteor/minimongo').LocalCollection
 var Minimongo = require('meteor/minimongo').Minimongo
 var Hook = require('meteor/callback-hook')
 var DocFetcher = require("./doc_fetcher")
-var OplogHandle = require('./oplog_tailing')
+var OplogHandle = require('./oplog_tailing').OplogHandle
 
 var MongoInternals = exports.MongoInternals = {};
 var MongoTest = exports.MongoTest = {};

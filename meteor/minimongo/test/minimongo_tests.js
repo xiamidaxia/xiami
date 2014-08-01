@@ -7,9 +7,9 @@ var EJSON = require('meteor/ejson')
 var Random = require('meteor/random')
 var Deps = require('meteor/deps')
 var ReactiveVar = require('meteor/test-helpers').ReactiveVar
-var fixTest = require('meteor/test-helpers').fixTest
-it = fixTest.itInFiber(it)
-test = fixTest.asMeteorTest(test)
+var fixTest = require('meteor/test-helpers')
+it = fixTest.meteorIt(it)
+test = fixTest.meteorTest(test)
 // Hack to make LocalCollection generate ObjectIDs by default.
 LocalCollection._useOID = true;
 

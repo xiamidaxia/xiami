@@ -2,8 +2,8 @@ module.exports = {
     "port"               : 3000,
     "env"                : "development", // development || production
     "mongo_port"         : 27017,
-    "mongo_url"          : "mongodb://localhost/test",
-    "mongo_oplog_url"    : "mongodb://localhost/local",
+    "mongo_url"          : "mongodb://localhost:27017/test",
+    "mongo_oplog_url"    : "",//"mongodb://127.0.0.1:27017/local",
     "compress"           : true,
     //"view_engine"        : "jade",
     //"trust_proxy"        : false,

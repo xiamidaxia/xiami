@@ -1,5 +1,7 @@
-// Base 64 encoding
 var EJSON = require('./ejson')
+var EJSONTest = require('./EJSONTest')
+// Base 64 encoding
+
 var BASE_64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 var BASE_64_VALS = {};
@@ -122,5 +124,6 @@ var base64Decode = function (str) {
   return arr;
 };
 
-exports.base64Encode = base64Encode;
-exports.base64Decode = base64Decode;
+EJSONTest.base64Encode = base64Encode;
+
+EJSONTest.base64Decode = base64Decode;

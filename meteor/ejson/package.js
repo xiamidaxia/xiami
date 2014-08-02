@@ -7,9 +7,11 @@ Package.all({
     files: "**/*",
     "imports": "meteor",
     "test_files": [
-        "test/ejson_test.js",
-        "test/base64_test.js",
-        "test/custom_models_for_tests.js"
-    ]
+        "ejson_test.js",
+        "base64_test.js",
+        "custom_models_for_tests.js"
+    ],
+    test_imports: "tinytest",
+    main_preload: true
 })
 

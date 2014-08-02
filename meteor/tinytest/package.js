@@ -3,6 +3,6 @@ Package.describe({
 })
 
 Package.all({
-    imports: ["test-helpers", "meteor"],
+    imports: ["test-helpers", "meteor",'random'],
     files: ['multiTest.js','index.js']
 })

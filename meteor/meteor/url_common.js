@@ -39,14 +39,19 @@ Meteor.absoluteUrl = function (path, options) {
 
 // allow later packages to override default options
 Meteor.absoluteUrl.defaultOptions = { };
-if (typeof __meteor_runtime_config__ === "object" &&
+/*if (typeof __meteor_runtime_config__ === "object" &&
     __meteor_runtime_config__.ROOT_URL)
-  Meteor.absoluteUrl.defaultOptions.rootUrl = __meteor_runtime_config__.ROOT_URL;
+  Meteor.absoluteUrl.defaultOptions.rootUrl = __meteor_runtime_config__.ROOT_URL;*/
+/*if (Meteor.getConfig)
+    Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.getConfig('root_url')
 
 
 Meteor._relativeToSiteRootUrl = function (link) {
-  if (typeof __meteor_runtime_config__ === "object" &&
+*//*  if (typeof __meteor_runtime_config__ === "object" &&
       link.substr(0, 1) === "/")
-    link = (__meteor_runtime_config__.ROOT_URL_PATH_PREFIX || "") + link;
+    link = (__meteor_runtime_config__.ROOT_URL_PATH_PREFIX || "") + link;*//*
+    //todo
+  if (Meteor.getConfig && link.substr(0,1) === "/")
+    link = (Meteor.getConfig('root_url_prefix') || "") + link
   return link;
-};
+};*/

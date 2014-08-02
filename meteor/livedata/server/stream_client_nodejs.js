@@ -1,6 +1,6 @@
 var _ = require('meteor/underscore')
 var LivedataTest = require('../common/LivedataTest')
-var Meteor
+var Meteor = require('meteor/meteor')
 // @param endpoint {String} URL to Meteor app
 //   "http://subdomain.meteor.com/" or "/" or
 //   "ddp+sockjs://foo-**.meteor.com/sockjs"

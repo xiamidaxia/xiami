@@ -5,9 +5,7 @@ var Tinytest = require('meteor/tinytest').Tinytest(it, test)
 var Fiber = require('fibers')
 
 var OplogCollection
-Fiber(function() {
-    OplogCollection = new Meteor.Collection("oplog-" + Random.id());
-}).run()
+OplogCollection = new Meteor.Collection("oplog-" + Random.id());
 Tinytest.add("mongo-livedata - oplog - cursorSupported", function (test) {
   var oplogEnabled =
         !!MongoInternals.defaultRemoteCollectionDriver().mongo._oplogHandle;

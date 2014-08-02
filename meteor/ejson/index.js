@@ -1,2 +1,4 @@
+var Meteor = require('meteor/meteor')
 require('./base64')
-module.exports = require('./ejson')
+require('./stringify')
+module.exports = Meteor.EJSON = require('./ejson')

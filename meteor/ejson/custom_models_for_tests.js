@@ -1,4 +1,5 @@
-var EJSON = require('../ejson')
+var EJSONTest = require('./EJSONTest')
+var EJSON = require('./ejson')
 var _ = require('meteor/underscore')
 
 function Address (city, state) {
@@ -83,13 +84,8 @@ _.extend(Holder, {
 
 EJSON.addType("Holder", Holder.fromJSONValue);
 
-var EJSONTest = {}
-
 _.extend(EJSONTest, {
   Address: Address,
   Person: Person,
   Holder: Holder
 });
-
-module.exports = EJSONTest
-

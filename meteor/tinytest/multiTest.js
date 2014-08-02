@@ -28,7 +28,14 @@ module.exports = function(it, test) {
     var _test = testHelpers.meteorTest(test)
     var multiTest = function(info, fnArr, str) {
         var _newit = str ? _it[str] : _it
-        _newit(info, function(done) {
+        _newit(info, function(_done) {
+            var _allDone = false
+            var done = function() {
+                if (!_allDone) {
+                    _done()
+                    _allDone = true
+                }
+            }
             var context = {}
             var testLoop = function() {
                 var _count = 0

@@ -106,7 +106,6 @@ var replaceMeteorAtomWithMongo = function (document) {
 var replaceTypes = function (document, atomTransformer) {
   if (typeof document !== 'object' || document === null)
     return document;
-
   var replacedTopLevelAtom = atomTransformer(document);
   if (replacedTopLevelAtom !== undefined)
     return replacedTopLevelAtom;

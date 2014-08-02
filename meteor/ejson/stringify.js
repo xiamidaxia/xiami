@@ -1,3 +1,5 @@
+var EJSON = require('./ejson')
+var _ = require('meteor/underscore')
 // Based on json2.js from https://github.com/douglascrockford/JSON-js
 //
 //    json2.js
@@ -6,7 +8,6 @@
 //    Public Domain.
 //
 //    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
-var _ = require('meteor/underscore')
 
 function quote(string) {
   return JSON.stringify(string);
@@ -99,7 +100,7 @@ var str = function (key, holder, singleIndent, outerIndent, canonical) {
 
 // If the JSON object does not yet have a stringify method, give it one.
 
-exports._canonicalStringify = function (value, options) {
+EJSON._canonicalStringify = function (value, options) {
   // Make a fake root object containing our value under the key of ''.
   // Return the result of stringifying the value.
   options = _.extend({

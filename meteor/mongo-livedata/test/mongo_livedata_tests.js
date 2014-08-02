@@ -10,16 +10,13 @@ var EJSON = require('meteor/ejson')
 var MongoInternals = require('../mongo_driver').MongoInternals
 var testAsyncMulti = require('meteor/tinytest').testAsyncMulti(it, test)
 var Tinytest = require('meteor/tinytest').Tinytest(it, test)
-var EJSONTest = require('meteor/ejson/test/custom_models_for_tests.js')
+var EJSONTest = require('meteor/ejson/EJSONTest')
 var DDP = require('meteor/livedata').DDP
 var SeededRandom = require('meteor/test-helpers').SeededRandom
 var pollUntil = require('meteor/test-helpers').pollUntil
-Fiber(function() {
-
 // This is a magic collection that fails its writes on the server when
 // the selector (or inserted document) contains fail: true.
 var TRANSFORMS = {};
-
 // We keep track of the collections, so we can refer to them by name
 var COLLECTIONS = {};
 
@@ -2344,7 +2341,6 @@ _.each( {collectionInsert: collectionInsert,
 _.each( [1, 3], function (repetitions) {
 _.each( [1, 3], function (collectionCount) {
 _.each( ['STRING', 'MONGO'], function (idGeneration) {
-
   testAsyncMulti('mongo-livedata - consistent _id generation ' + name + ', ' + repetitions + ' repetitions on ' + collectionCount + ' collections, idGeneration=' + idGeneration, [ function (test, expect) {
     var collectionOptions = { idGeneration: idGeneration };
 
@@ -2409,7 +2405,7 @@ testAsyncMulti('mongo-livedata - empty string _id', [
 
 if (Meteor.isServer) {
 
-  testAsyncMulti("mongo-livedata - minimongo on server to server connection", [
+  testAsyncMulti.skip("mongo-livedata - minimongo on server to server connection", [
     function (test, expect) {
       var self = this;
       Meteor._debug("connection setup");
@@ -2469,7 +2465,7 @@ if (Meteor.isServer) {
     }
   ]);
 
-  testAsyncMulti("mongo-livedata - minimongo observe on server", [
+  testAsyncMulti.skip("mongo-livedata - minimongo observe on server", [
     function (test, expect) {
       var self = this;
       self.id = Random.id();
@@ -2981,4 +2977,3 @@ Meteor.isServer && Tinytest.add("mongo-livedata - insert and retrieve EJSON user
   coll.find({}).fetch();
 });
 
-})

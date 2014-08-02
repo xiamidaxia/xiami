@@ -30,5 +30,23 @@ WebApp._timeoutAdjustmentRequestCallback = function (req, res) {
 Meteor.startup = function(fn) {
     WebApp.on("STARTUP", fn)
 }
+Meteor.getConfig = WebApp.getConfig.bind(WebApp)
 
+// allow later packages to override default options
+Meteor.absoluteUrl.defaultOptions = { };
+/*if (typeof __meteor_runtime_config__ === "object" &&
+ __meteor_runtime_config__.ROOT_URL)
+ Meteor.absoluteUrl.defaultOptions.rootUrl = __meteor_runtime_config__.ROOT_URL;*/
+Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.getConfig('root_url')
+
+
+Meteor._relativeToSiteRootUrl = function (link) {
+    /*  if (typeof __meteor_runtime_config__ === "object" &&
+     link.substr(0, 1) === "/")
+     link = (__meteor_runtime_config__.ROOT_URL_PATH_PREFIX || "") + link;*/
+    //todo
+    if (link.substr(0,1) === "/")
+        link = (Meteor.getConfig('root_url_prefix') || "") + link
+    return link;
+};
 module.exports = Meteor.WebApp = WebApp

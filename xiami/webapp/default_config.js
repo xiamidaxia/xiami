@@ -13,5 +13,7 @@ module.exports = {
     "view_cache"         : false,
     "client_path"        : "",
     "static_maxage"      : 3600000 * 24 * 30,
-    "root_url_path_prefix": ""
+    "root_url_path_prefix": "",
+    "root_url": "http://127.0.0.1:3000"
 }
+

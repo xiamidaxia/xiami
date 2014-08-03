@@ -1,3 +1,7 @@
+var Tinytest = require('meteor/tinytest').Tinytest(it, test)
+var Meteor = require('meteor/meteor')
+var DDP = Meteor.DDP
+var Random = require('meteor/random')
 Tinytest.add("livedata - DDP.randomStream", function (test) {
   var randomSeed = Random.id();
   var context = { randomSeed: randomSeed };
@@ -5,7 +9,6 @@ Tinytest.add("livedata - DDP.randomStream", function (test) {
   var sequence = DDP._CurrentInvocation.withValue(context, function () {
     return DDP.randomStream('1');
   });
-
   var seeds = sequence.alea.args;
 
   test.equal(seeds.length, 2);

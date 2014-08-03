@@ -1,3 +1,17 @@
+var Meteor = require('meteor/meteor')
+var Random = require('meteor/random')
+var _  = require('meteor/underscore')
+var Tinytest = require('meteor/tinytest').Tinytest(it, test)
+var testAsyncMulti = require('meteor/tinytest').testAsyncMulti(it, test)
+var LivedataTest = require('../common/LivedataTest')
+var pollUntil = require('meteor/test-helpers').pollUntil
+var check = require('meteor/check').check
+var DDP = Meteor.DDP
+
+var Ledger = require('./livedata_test_service').Ledger
+var objectsWithUsers = require('./livedata_test_service').objectsWithUsers
+var One = require('./livedata_test_service').One
+var Two = require('./livedata_test_service').Two
 // XXX should check error codes
 var failure = function (test, code, reason) {
   return function (error, result) {

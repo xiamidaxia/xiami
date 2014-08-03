@@ -42,8 +42,8 @@ _.extend(Xiami.prototype, {
         var self = this
         self.emit("STARTUP")
         self.httpServer.listen(this.getConfig("port"), function() {
-            self.emit('STARTED')
             Log.info('xiami server listeing at ' + self.getConfig('port'))
+            self.emit('STARTED')
         })
     },
     _connect: function() {

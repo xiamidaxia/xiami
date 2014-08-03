@@ -18,12 +18,16 @@ Package.all({
     //test_files: "test/*",
     test_imports: [
         "test-helpers",
+        "tinytest"
         //"mongo-livedata",
     ],
-/*    test_files: [
-        "test/livedata_connection_tests.js",
-        "test/stub_stream.js"
-    ],*/
+    test_files: [
+        "test/stub_stream.js",
+        "test/random_stream_tests.js",
+        "test/livedata_test_service.js",
+        "test/livedata_tests.js"
+        //"test/livedata_connection_tests.js",
+    ],
     main_preload: true
 })
 

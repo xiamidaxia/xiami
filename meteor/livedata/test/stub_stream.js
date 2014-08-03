@@ -8,7 +8,6 @@ var StubStream = module.exports = function () {
   self.callbacks = {};
 };
 
-
 _.extend(StubStream.prototype, {
   // Methods from Stream
   on: function (name, callback) {

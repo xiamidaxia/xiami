@@ -19,6 +19,9 @@ exports.meteorTest = function(assert) {
     test.isTrue = function(v) {
         return assert.isTrue(!!v)
     }
+    test.runId = function() {
+        return require('meteor/random').id()
+    }
     return test
 }
 

@@ -2405,7 +2405,7 @@ testAsyncMulti('mongo-livedata - empty string _id', [
 
 if (Meteor.isServer) {
 
-  testAsyncMulti.skip("mongo-livedata - minimongo on server to server connection", [
+  testAsyncMulti("mongo-livedata - minimongo on server to server connection", [
     function (test, expect) {
       var self = this;
       Meteor._debug("connection setup");
@@ -2465,7 +2465,7 @@ if (Meteor.isServer) {
     }
   ]);
 
-  testAsyncMulti.skip("mongo-livedata - minimongo observe on server", [
+  testAsyncMulti("mongo-livedata - minimongo observe on server", [
     function (test, expect) {
       var self = this;
       self.id = Random.id();

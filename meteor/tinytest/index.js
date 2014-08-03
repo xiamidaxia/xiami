@@ -6,9 +6,6 @@ exports.Tinytest = function(it, test) {
     var testHelpers = require('meteor/test-helpers')
     test = testHelpers.meteorTest(test)
     it = testHelpers.meteorIt(it)
-    test.runId = function() {
-        return require('meteor/random').id()
-    }
     var Tinytest = {}
     Tinytest.add = function(info, fn, _str) {
         var _newit = _str ? it[_str] : it

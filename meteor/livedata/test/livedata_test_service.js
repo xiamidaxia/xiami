@@ -1,3 +1,8 @@
+var _ = require('meteor/underscore')
+var Meteor = require('meteor/meteor')
+var Match = require('meteor/check').Match
+var check = require('meteor/check').check
+var Random = require('meteor/random')
 Meteor.methods({
   nothing: function () {
     // No need to check if there are no arguments.
@@ -33,7 +38,7 @@ Meteor.methods({
       // We used to improperly serialize errors that were thrown through a
       // future first.
       if (Meteor.isServer && options.throwThroughFuture) {
-        var Future = Npm.require('fibers/future');
+        var Future = require('fibers/future', true);
         var f = new Future;
         f['throw'](e);
         e = f.wait();
@@ -57,8 +62,8 @@ if (Meteor.isServer) {
   // other.
   var waiters = {};
 
-  var path = Npm.require('path');
-  var Future = Npm.require(path.join('fibers', 'future'));
+  var path = require('path');
+  var Future = require(path.join('fibers', 'future'), true);
 
   var returnThroughFuture = function (token, returnValue) {
     // Make sure that when we call return, the fields are already cleared.
@@ -95,7 +100,7 @@ if (Meteor.isServer) {
 
 /*****/
 
-Ledger = new Meteor.Collection("ledger");
+var Ledger = exports.Ledger = new Meteor.Collection("ledger");
 Ledger.allow({
   insert: function() { return true; },
   update: function() { return true; },
@@ -147,7 +152,7 @@ Meteor.methods({
 
 /// Helpers for "livedata - changing userid reruns subscriptions..."
 
-objectsWithUsers = new Meteor.Collection("objectsWithUsers");
+var objectsWithUsers = exports.objectsWithUsers = new Meteor.Collection("objectsWithUsers");
 
 if (Meteor.isServer) {
   objectsWithUsers.remove({});
@@ -313,8 +318,8 @@ if (Meteor.isServer) {
 /*****/
 
 /// Helpers for "livedata - publish multiple cursors"
-One = new Meteor.Collection("collectionOne");
-Two = new Meteor.Collection("collectionTwo");
+var One = exports.One = new Meteor.Collection("collectionOne");
+var Two = exports.Two = new Meteor.Collection("collectionTwo");
 
 if (Meteor.isServer) {
   One.remove({});

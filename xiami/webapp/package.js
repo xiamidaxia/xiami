@@ -5,6 +5,7 @@ Package.describe({
 
 Package.server({
     imports: [
+        "meteor/meteor",
         "meteor/underscore",
         "meteor/logging",
         "meteor/routepolicy"

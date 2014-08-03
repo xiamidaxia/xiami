@@ -13,6 +13,7 @@ var _ = require('meteor/underscore')
 //all events that can be hook
 var DEFINE_EVENTS = ['STARTED', "STARTUP"]
 var Log = require('meteor/logging')
+var Meteor = require('meteor/meteor')
 /**
  *
  * @constructor
@@ -41,10 +42,10 @@ _.extend(Xiami.prototype, {
     run: function() {
         var self = this
         self.emit("STARTUP")
-        self.httpServer.listen(this.getConfig("port"), function() {
+        self.httpServer.listen(this.getConfig("port"), Meteor.bindEnvironment(function() {
             Log.info('xiami server listeing at ' + self.getConfig('port'))
             self.emit('STARTED')
-        })
+        }))
     },
     _connect: function() {
         var self = this
@@ -52,17 +53,10 @@ _.extend(Xiami.prototype, {
         app.use(connect.compress())
         app.use(this.connectHandler)
         app.use(connect.query())
-        //add static
-            //todo
-        //404
-        app.use(function(req, res) {
-            res.writeHead(404)
-            res.end()
-        })
+        app.use(connect.bodyParser())
+        app.use(connect.static(__dirname + '/static', { maxAge: self.getConfig("static_maxage") }))
+        app.use(connect.errorHandler())
         self.httpServer = http.createServer(app);
-        //app.use(connect.bodyParser())
-        //app.use(connect.static(this.getConfig("client_path",staticConfig)))
-        //app.use(connect.errorHandler())
     },
     /**
      * @param {String}

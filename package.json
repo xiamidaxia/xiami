@@ -1,13 +1,13 @@
 {
   "name": "xiamidaxia",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "a simple realtime framework",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": ""
   },
   "repository": {
     "type": "git",

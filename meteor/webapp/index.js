@@ -1,5 +1,6 @@
 var Meteor = require('meteor/meteor')
 var Xiami = require('xiami/webapp').Xiami
+var _ = require('meteor/underscore')
 
 var WebApp = new Xiami
 

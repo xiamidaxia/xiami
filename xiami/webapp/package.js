@@ -5,6 +5,7 @@ Package.describe({
 
 Package.server({
     imports: [
+        "xiami/config",
         "meteor/meteor",
         "meteor/underscore",
         "meteor/logging",
@@ -16,6 +17,7 @@ Package.server({
         "default_config.js",
         "Xiami.js"
     ],
+    test_files: ["test/xiami.js"],
     main_preload: true
 })
 

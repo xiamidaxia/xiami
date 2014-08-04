@@ -3,6 +3,7 @@ Package.describe({
     meteor: "0.8.1.3"
 });
 Package.all({
+    imports: "xiami/config",
     main_preload: true
 })
 Package.server({

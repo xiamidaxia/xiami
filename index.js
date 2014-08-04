@@ -11,19 +11,23 @@ var xpmServer = xpm.serverCreate({
 })
 
 Fiber(function() {
+    var config = xpmServer.require('xiami/config')
+    var webapp = xpmServer.require('xiami/webapp')
+    config.init({port: 4000})
     xpmServer.require('meteor/standard-app-packages')
-    var Meteor = xpmServer.require('meteor/meteor')
     xpmServer.test([
+        "xiami/config",
+        "xiami/webapp",
         //"meteor/minimongo"
         //"meteor/ejson",
         //"meteor/mongo-livedata"
         //"meteor/livedata"
         //"meteor"
     ], {bail: false, timeout: 10000})
-    Meteor.WebApp.run()
+    webapp.run()
 }).run()
 
-//client static files
+/*//client static files
 var xpmClient = xpm.clientCreate({
     family: {
         meteor: __dirname + "/meteor",
@@ -31,5 +35,5 @@ var xpmClient = xpm.clientCreate({
     },
     dest: path.join(__dirname, '.dest')
 })
-xpmClient.add(["meteor/*"])
+xpmClient.add(["meteor*//*","xiami*//*"])*/
 

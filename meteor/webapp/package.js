@@ -4,5 +4,5 @@ Package.describe({
 
 Package.server({
     "files": "index.js",
-    imports: ["xiami/webapp", "meteor"]
+    imports: ["xiami/config","xiami/webapp", "meteor"]
 })

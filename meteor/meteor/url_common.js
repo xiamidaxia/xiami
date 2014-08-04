@@ -1,5 +1,10 @@
 var _ = require('meteor/underscore')
 var Meteor = require('./meteor')
+var config = require('xiami/config')
+
+Meteor.getConfig = function(name) {
+    config.get(name)
+}
 
 Meteor.absoluteUrl = function (path, options) {
   // path is optional
@@ -37,21 +42,20 @@ Meteor.absoluteUrl = function (path, options) {
   return url;
 };
 
+
 // allow later packages to override default options
 Meteor.absoluteUrl.defaultOptions = { };
 /*if (typeof __meteor_runtime_config__ === "object" &&
-    __meteor_runtime_config__.ROOT_URL)
-  Meteor.absoluteUrl.defaultOptions.rootUrl = __meteor_runtime_config__.ROOT_URL;*/
-/*if (Meteor.getConfig)
-    Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.getConfig('root_url')
+ __meteor_runtime_config__.ROOT_URL)
+ Meteor.absoluteUrl.defaultOptions.rootUrl = __meteor_runtime_config__.ROOT_URL;*/
+Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.getConfig('root_url')
 
 
 Meteor._relativeToSiteRootUrl = function (link) {
-*//*  if (typeof __meteor_runtime_config__ === "object" &&
-      link.substr(0, 1) === "/")
-    link = (__meteor_runtime_config__.ROOT_URL_PATH_PREFIX || "") + link;*//*
-    //todo
-  if (Meteor.getConfig && link.substr(0,1) === "/")
-    link = (Meteor.getConfig('root_url_prefix') || "") + link
-  return link;
-};*/
+    /*  if (typeof __meteor_runtime_config__ === "object" &&
+     link.substr(0, 1) === "/")
+     link = (__meteor_runtime_config__.ROOT_URL_PATH_PREFIX || "") + link;*/
+    if (link.substr(0,1) === "/")
+        link = (Meteor.getConfig('root_url_prefix') || "") + link
+    return link;
+};

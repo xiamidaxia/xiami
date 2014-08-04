@@ -7,8 +7,9 @@ var EventEmitter = require('events').EventEmitter
 var http = require('http')
 var crypto = require('crypto')
 var connect = require('connect')
-var default_config = require('./default_config')
 var _ = require('meteor/underscore')
+var fs = require('fs')
+var config = require('xiami/config')
 
 //all events that can be hook
 var DEFINE_EVENTS = ['STARTED', "STARTUP"]
@@ -17,15 +18,11 @@ var Meteor = require('meteor/meteor')
 /**
  *
  * @constructor
- * @param {Object}
  * @param {Object | Ignore}
  */
-var Xiami = module.exports = function(config, clientManifest) {
+var Xiami = module.exports = function(clientManifest) {
     EventEmitter.apply(this, arguments)
-    this._opts = _.extend({}, default_config, config)
-    //客户端缓存的manifest对象
     this.clientManifest = clientManifest
-    //客户端缓存的hash值，用此判断服务器是否需要刷新manifest
     this.clientHash = null
     this.connectHandler = connect()
     //Webserver
@@ -53,9 +50,11 @@ _.extend(Xiami.prototype, {
         app.use(connect.compress())
         app.use(this.connectHandler)
         app.use(connect.query())
-        app.use(connect.bodyParser())
-        app.use(connect.static(__dirname + '/static', { maxAge: self.getConfig("static_maxage") }))
-        app.use(connect.errorHandler())
+        app.use(function(req, res) {
+            var _stream = fs.createReadStream(__dirname + "/index.html")
+            _stream.pipe(res)
+        })
+        //app.use(connect.errorHandler())
         self.httpServer = http.createServer(app);
     },
     /**
@@ -63,9 +62,7 @@ _.extend(Xiami.prototype, {
      * @return {*}
      */
     getConfig: function(name) {
-        var val = this._opts[name]
-        if (val === undefined) throw new Error("xiami.getConfig([String]): unknow config name: " + name)
-        return val
+        return config.get(name)
     },
     /**
      * @public
@@ -74,12 +71,11 @@ _.extend(Xiami.prototype, {
         return this.getConfig('env') !== "production"
     },
     /**
-     * 计算客户端hash值
      * @return {String}
      */
     _calculateClientHash: function() {
         var hash = crypto.createHash('sha1')
-        hash.update(JSON.stringify(this._opts))
+        hash.update(JSON.stringify(config._opts))
         _.each(this.clientManifest, function(resource) {
             if (resource.where === 'client' || resource.where === 'internal') {
                 hash.update(resource.path)

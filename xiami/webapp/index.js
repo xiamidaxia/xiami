@@ -1,1 +1,2 @@
-exports.Xiami = require('./Xiami')
+var Xiami = require('./Xiami')
+module.exports = new Xiami

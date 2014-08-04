@@ -1,6 +1,7 @@
 #Xiami
+
 v0.0.1
-----
+
 An useful realtime web framework based from [meteor](https://github.com/meteor/meteor)
 
 ##what is different from `meteor` ?

@@ -30,6 +30,7 @@
     "faye-websocket": "^0.7.2",
     "fibers": "^1.0.1",
     "mongodb": "^1.4.7",
+    "send": "^0.7.4",
     "sockjs": "^0.3.9",
     "useragent": "^2.0.9"
   }

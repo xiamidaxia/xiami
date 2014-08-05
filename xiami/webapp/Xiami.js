@@ -15,6 +15,8 @@ var config = require('xiami/config')
 var DEFINE_EVENTS = ['STARTED', "STARTUP"]
 var Log = require('meteor/logging')
 var Meteor = require('meteor/meteor')
+var mainHtml = fs.readFileSync(config.get('main_path'))
+var staticMiddleware = require('./middlewares/static')
 /**
  *
  * @constructor
@@ -50,11 +52,15 @@ _.extend(Xiami.prototype, {
         app.use(connect.compress())
         app.use(this.connectHandler)
         app.use(connect.query())
+        app.use(staticMiddleware)
         app.use(function(req, res) {
-            var _stream = fs.createReadStream(__dirname + "/index.html")
-            _stream.pipe(res)
+            var headers = {
+                'Content-Type':  'text/html; charset=utf-8'
+            }
+            res.writeHead(200,headers)
+            res.end(mainHtml)
         })
-        //app.use(connect.errorHandler())
+        app.use(connect.errorHandler())
         self.httpServer = http.createServer(app);
     },
     /**

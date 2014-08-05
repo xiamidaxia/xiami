@@ -34,7 +34,6 @@ Package.all({
 Package.server({
     "imports": [
         //"webapp",
-        "routepolicy",
         //"audit-argument-checks",
         //"autopublish",
         //"facts"
@@ -45,7 +44,6 @@ Package.server({
     //test_files: "test/server/*"
     test_imports: [],
     test_files: [
-
     ]
 })
 

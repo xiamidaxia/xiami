@@ -13,7 +13,7 @@ var xpmServer = xpm.serverCreate({
 Fiber(function() {
     var config = xpmServer.require('xiami/config')
     var webapp = xpmServer.require('xiami/webapp')
-    config.init({port: 4000})
+    config.init({port: 3000})
     xpmServer.require('meteor/standard-app-packages')
     xpmServer.test([
         "xiami/config",

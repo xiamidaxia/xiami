@@ -1,9 +1,8 @@
 var url = require('url')
 var _ = require('meteor/underscore')
 var WebApp = require('meteor/webapp')
-var RoutePolicy = require('meteor/routepolicy')
 
-var pathPrefix = WebApp.getConfig('root_url_path_prefix');
+var pathPrefix = ""
 
 var StreamServer = module.exports = function () {
   var self = this;
@@ -16,7 +15,7 @@ var StreamServer = module.exports = function () {
   // routepolicy is only a weak dependency, because we don't need it if we're
   // just doing server-to-server DDP as a client.
   //if (Package.routepolicy) {
-      RoutePolicy.declare(self.prefix + '/', 'network');
+  //    RoutePolicy.declare(self.prefix + '/', 'network');
   //}
 
   // set up sockjs

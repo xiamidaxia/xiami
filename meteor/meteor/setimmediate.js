@@ -30,7 +30,7 @@
 
 "use strict";
 
-var global = this;
+//var global = this;
 var Meteor = require('./meteor')
 
 

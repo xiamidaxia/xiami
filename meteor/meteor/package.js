@@ -21,20 +21,38 @@ Package.server({
         "url_server.js",
         "errors.js"
     ],
-    //tests: "test/**/*.+(js|coffee)"
     test_files: [
-        'test/debug_test.coffee',
+        'test/server_environment_test.js',
+        "test/helpers_test.js",
         'test/dynamics_test.js',
         "test/fiber_helpers_test.js",
-        "test/helpers_test.js",
+        "test/wrapasync_test.js",
+        "test/url_tests.js",
         "test/timers_tests.js",
-        "test/url_tests.js"
+        'test/debug_test.coffee'
     ]
-/*    tests: [
-    ]*/
 })
 
 Package.client({
-    files: ["client.js","debug.js"]
+    files: [
+        "meteor.js",
+        "client.js",
+        "index.js",
+        "debug.js",
+        "dynamics_browser.js",
+        "helpers.js",
+        "setimmediate.js",
+        "timers.js",
+        "errors.js",
+        "fiber_stubs_client.js",
+        "startup_client.js",
+        "url_common.js"
+    ],
+    test_files: [
+        "test/client_environment_test.js",
+        "test/url_tests.js",
+        "test/timers_tests.js",
+        "test/debug_test.coffee"
+    ]
 })
 

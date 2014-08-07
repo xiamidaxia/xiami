@@ -66,9 +66,9 @@ it("meteor - absolute-url - basics", function(done) {
     done()
 });
 
-it.skip("meteor - absolute-url - environment", function(done) {
+it("meteor - absolute-url - environment", function(done) {
     // make sure our test runner set the runtime configuration, and this
     // propagates to the client.
-    test.isTrue(/^http/.test(__meteor_runtime_config__.ROOT_URL));
+    test.isTrue(/^http/.test(Meteor.getConfig('root_url')));
     done()
 });

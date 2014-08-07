@@ -3,7 +3,7 @@ var Meteor = require('./meteor')
 var config = require('xiami/config')
 
 Meteor.getConfig = function(name) {
-    config.get(name)
+    return config.get(name)
 }
 
 Meteor.absoluteUrl = function (path, options) {

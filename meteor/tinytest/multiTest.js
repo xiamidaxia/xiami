@@ -1,5 +1,4 @@
 var _ = require('meteor/underscore')
-var Fiber = require('fibers')
 var Meteor = require('meteor/meteor')
 var withoutInvocation = function (f) {
     if (Meteor.DDP) {

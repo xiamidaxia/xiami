@@ -21,7 +21,7 @@ Package.all({
 })
 
 Package.server({
-    "imports": ['meteor','random', 'ejson', 'json', 'underscore', 'minimongo', 'logging',
+    "imports": ['meteor','random', 'ejson', 'underscore', 'minimongo', 'logging',
         'livedata', 'deps', "callback-hook", "webapp",
         // Binary Heap data structure is used to optimize oplog observe driver
         // performance.

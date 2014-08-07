@@ -1,7 +1,9 @@
 var Minimongo = require('meteor/minimongo').Minimongo
 var LocalCollection = require('meteor/minimongo').LocalCollection
-var Deps = require('meteor/Deps')
+var Deps = require('meteor/deps')
+var fixTest = require('meteor/test-helpers')
 var _ = require('meteor/underscore')
+test = fixTest.meteorTest(test)
 
 it("minimongo - wrapTransform", function (done) {
   var wrap = LocalCollection.wrapTransform;

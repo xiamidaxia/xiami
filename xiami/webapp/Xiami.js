@@ -65,7 +65,8 @@ _.extend(Xiami.prototype, {
     },
     /**
      * @param {String}
-     * @return {*}
+     * @return {*e
+     * ad
      */
     getConfig: function(name) {
         return config.get(name)

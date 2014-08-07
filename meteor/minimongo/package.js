@@ -24,7 +24,7 @@ Package.all({
         'objectid.js'
     ],
     test_imports: ["test-helpers"],
-    test_files: ["test/minimongo_tests.js"],
+    test_files: ["test/minimongo_tests.js", "test/wrap_transform_tests.js"],
     main_preload: true
 })
 

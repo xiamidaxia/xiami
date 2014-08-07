@@ -1,5 +1,6 @@
 // Simple implementation of dynamic scoping, for use in browsers
 var Meteor = require('./meteor')
+var _ = require('meteor/underscore')
 var nextSlot = 0;
 var currentValues = [];
 

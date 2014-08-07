@@ -1,3 +1,6 @@
+var Meteor = require('meteor/meteor')
+var Fiber = require('fibers')
+var _ = require('meteor/underscore')
 var asyncFunction1 = function(x, cb) {
     setTimeout(function() { cb(null, x); }, 5);
 };
@@ -23,27 +26,29 @@ var wrapped2 = Meteor._wrapAsync(asyncFunction2);
 var wrapped3 = Meteor._wrapAsync(asyncFunction3);
 var wrapped4 = Meteor._wrapAsync(asyncFunction4);
 
-Tinytest.add("environment - wrapAsync sync", function(test) {
-    // one required arg and callback
-    test.equal(wrapped1(3), 3);
-    test.equal(wrapped1(3, undefined), 3);
-    // one required arg, optional second arg, callback
-    test.equal(wrapped2(3), 3);
-    test.equal(wrapped2(3, {foo: "bar"}), 3);
-    test.equal(wrapped2(3, undefined, undefined), 3);
-    test.equal(wrapped2(3, {foo: "bar"}, undefined), 3);
-    // optional first arg, callback
-    test.equal(wrapped3(3), 3);
-    test.equal(wrapped3(3, undefined), 3);
-    test.equal(wrapped3(), 3);
-    test.equal(wrapped3(undefined), 3);
-    // only callback
-    test.equal(wrapped4(), 3);
-    test.equal(wrapped4(undefined), 3);
+it.skip("environment - wrapAsync sync", function(done) {
+    Fiber(function() {
+        // one required arg and callback
+        test.equal(wrapped1(3), 3);
+        test.equal(wrapped1(3, undefined), 3);
+        // one required arg, optional second arg, callback
+        test.equal(wrapped2(3), 3);
+        test.equal(wrapped2(3, {foo: "bar"}), 3);
+        test.equal(wrapped2(3, undefined, undefined), 3);
+        test.equal(wrapped2(3, {foo: "bar"}, undefined), 3);
+        // optional first arg, callback
+        test.equal(wrapped3(3), 3);
+        test.equal(wrapped3(3, undefined), 3);
+        test.equal(wrapped3(), 3);
+        test.equal(wrapped3(undefined), 3);
+        // only callback
+        test.equal(wrapped4(), 3);
+        test.equal(wrapped4(undefined), 3);
+        done()
+    }).run()
 });
 
-testAsyncMulti("environment - wrapAsync async", [
-    function(test, expect) {
+it.skip("environment - wrapAsync async", function(done) {
         var cb = function(result) {
             return expect(null, result);
         };
@@ -60,16 +65,18 @@ testAsyncMulti("environment - wrapAsync async", [
         // only callback
         test.equal(wrapped4(cb(3)), undefined);
     }
-]);
+);
 
-Tinytest.addAsync("environment - wrapAsync callback is " +
-    "in fiber", function(test, onComplete) {
-    var cb = function(err, result) {
-        if (Meteor.isServer) {
-            var Fiber = Npm.require('fibers');
-            test.isTrue(Fiber.current);
-        }
-        onComplete();
-    };
-    wrapped1(3, cb);
+it.skip("environment - wrapAsync callback is " +
+    "in fiber", function(done) {
+    Fiber(function() {
+        var cb = function(err, result) {
+            if (Meteor.isServer) {
+                var Fiber = require('fibers')
+                test.isTrue(Fiber.current);
+            }
+            done()
+        };
+        wrapped1(3, cb);
+    }).run()
 });

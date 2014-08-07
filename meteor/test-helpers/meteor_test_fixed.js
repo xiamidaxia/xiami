@@ -2,7 +2,9 @@
  * make mocha test can run with fiber and chai.assertin meteor test
  */
 var _ = require('meteor/underscore')
-var Fiber = require('fibers')
+if (global.isServer) {
+    var Fiber = require('fibers')
+}
 
 /**
  * fixed meteor test
@@ -29,6 +31,7 @@ exports.meteorTest = function(assert) {
  * mocha it in Fiber
  */
 exports.meteorIt = function(it) {
+    if (global.isClient) return it
     function _wrapIt(str, info, fn) {
         var _it = str ? it[str] : it
         if(!_it) throw new Error('mocha it has no method: ' + str)

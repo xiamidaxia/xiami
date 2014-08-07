@@ -9,11 +9,13 @@ it("logging - _getCallerDetails", function(done) {
     // in Chrome and Firefox, other browsers don't give us an ability to get
     // stacktrace.
     if ((new Error).stack) {
-        test.equal(details.file, 'logging.js');
-
+        if (global.isServer)
+            test.equal(details.file, 'logging.js');
+        else
+            test.equal(details.file, "meteor-logging.js")
         // evaled statements shouldn't crash
         var code = "Log._getCallerDetails().file";
-        test.match(eval(code), /^eval|logging.js$/);
+            test.match(eval(code), /^eval|logging.js$/);
     }
     done()
 });

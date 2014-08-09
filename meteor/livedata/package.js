@@ -12,7 +12,7 @@ Package.describe({
 Package.all({
     "imports": [
         "meteor","check","random","ejson","underscore","deps",
-        "logging","retry", "minimongo","webapp"
+        "logging","retry", "minimongo"
     ],
     files: ["common/*", "index.js"],
     //test_files: "test/*",
@@ -33,7 +33,7 @@ Package.all({
 
 Package.server({
     "imports": [
-        //"webapp",
+        "webapp",
         //"audit-argument-checks",
         //"autopublish",
         //"facts"
@@ -49,9 +49,6 @@ Package.server({
 
 
 Package.client({
-    "imports": [
-        "reload"
-    ],
     "files": "client/*",
     "test_files": "test/client/*"
 })

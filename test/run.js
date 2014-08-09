@@ -36,12 +36,12 @@ Fiber(function() {
     var webapp = xpmServer.require('xiami/webapp')
     config.init({port: 3000})
     xpmServer.require('meteor/standard-app-packages')
-    xpmServer.test(testList.concat(serverList), {bail: false, timeout: 10000})
+    //xpmServer.test(testList.concat(serverList), {bail: false, timeout: 10000})
     webapp.run()
 }).run()
 
 //client static files
-xpmClient.add(testList)
-xpmClient.test(testList)
+xpmClient.add(testList.concat(["meteor/livedata","meteor/webapp"]))
+xpmClient.test(["meteor/livedata"])
 xpmClient.run()
 

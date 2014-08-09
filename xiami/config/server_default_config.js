@@ -9,6 +9,7 @@ module.exports = {
     "main_path"         : __dirname + "/main.html",
     "static_prefix"      : "/static",
     "static_maxage"      : 3600000 * 24 * 30,
-    "root_url": "http://127.0.0.1:3000"
+    "root_url": "http://127.0.0.1:3000",
+    "root_url_prefix":""
 }
 

@@ -30,7 +30,7 @@ THE SOFTWARE.
 
 //     [*] Including lib/index.js
 // Public object
-SockJS = (function(){
+global.SockJS = (function(){
               var _document = document;
               var _window = window;
               var utils = {};

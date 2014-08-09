@@ -1,3 +1,7 @@
+var LivedataTest = require('../common/LivedataTest')
+var _ = require('meteor/underscore')
+var Meteor = require('meteor/meteor')
+var SockJS = global.SockJS
 // @param url {String} URL to Meteor app
 //   "http://subdomain.meteor.com/" or "/" or
 //   "ddp+sockjs://foo-**.meteor.com/sockjs"
@@ -158,7 +162,7 @@ _.extend(LivedataTest.ClientStream.prototype, {
     // Convert raw URL to SockJS URL each time we open a connection, so that we
     // can connect to random hostnames and get around browser per-host
     // connection limits.
-    self.socket = new SockJS(toSockjsUrl(self.rawUrl), undefined, options);
+    self.socket = new SockJS(require('../common/stream_client_common').toSockjsUrl(self.rawUrl), undefined, options);
     self.socket.onopen = function (data) {
       self._connected();
     };

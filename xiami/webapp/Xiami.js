@@ -15,7 +15,7 @@ var config = require('xiami/config')
 var DEFINE_EVENTS = ['STARTED', "STARTUP"]
 var Log = require('meteor/logging')
 var Meteor = require('meteor/meteor')
-var mainHtml = fs.readFileSync(config.get('main_path'))
+var mainHtmlCache
 var staticMiddleware = require('./middlewares/static')
 /**
  *
@@ -38,12 +38,15 @@ _.extend(Xiami.prototype, {
     /**
      * start the server
      */
-    run: function() {
+    run: function(cb) {
         var self = this
+        //set mainHtml
+        mainHtmlCache = fs.readFileSync(config.get('main_path'))
         self.emit("STARTUP")
         self.httpServer.listen(this.getConfig("port"), Meteor.bindEnvironment(function() {
             Log.info('xiami server listeing at ' + self.getConfig('port'))
             self.emit('STARTED')
+            cb && cb()
         }))
     },
     _connect: function() {
@@ -58,7 +61,7 @@ _.extend(Xiami.prototype, {
                 'Content-Type':  'text/html; charset=utf-8'
             }
             res.writeHead(200,headers)
-            res.end(mainHtml)
+            res.end(mainHtmlCache)
         })
         app.use(connect.errorHandler())
         self.httpServer = http.createServer(app);

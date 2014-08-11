@@ -1,4 +1,3 @@
-var Fiber = require('fibers')
 var path = require('path')
 var xpm = require('xpm')
 var extend = xpm.util.extend
@@ -8,15 +7,17 @@ var family = {
     xiami: path.join(__dirname, "xiami")
 }
 
-exports.xpmClient = function(opts) {
+exports.clientCreate = function(opts) {
     opts = extend({family: family}, opts)
     var xpmClient = xpm.clientCreate(opts)
     xpmClient.add(["meteor/*", "xiami/*"])
     return xpmClient
 }
 
-exports.xpmServer = function(opts) {
+exports.serverCreate = function(opts) {
     opts = extend({family: family}, opts)
     var xpmServer = xpm.serverCreate(opts)
     return xpmServer
 }
+
+require('./run')(exports)

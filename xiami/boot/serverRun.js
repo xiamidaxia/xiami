@@ -1,5 +1,4 @@
-module.exports = function(cb, config) {
+module.exports = function(config, cb) {
     require('xiami/config').init(config)
-    cb && cb()
-    require('xiami/webapp').run()
+    require('xiami/webapp').run(cb)
 }

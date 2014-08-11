@@ -1,23 +1,26 @@
 var Fiber = require('fibers')
 var path = require('path')
 var xpm = require('xpm')
-require('./test/run')
-return
+var extend = xpm.util.extend
 
 var family = {
     meteor: path.join(__dirname,"meteor"),
     xiami: path.join(__dirname, "xiami")
 }
-var dest = path.join(__dirname,'.dest')
 
-var xpmServer = xpm.serverCreate({ family: family})
-var xpmClient = xpm.clientCreate({ family: family, dest: dest })
+exports.xpmClient = function(opts, cb) {
+    opts = extend({family: family}, opts)
+    var xpmClient = xpm.clientCreate(opts)
+    xpmClient.add(["meteor/*", "xiami/*"])
+    xpmClient.run(cb)
+}
 
-Fiber(function() {
-    //start server
-    xpmServer.require('xiami/boot').run()
-}).run()
+exports.xpmServer = function(opts, cb) {
+    opts = extend({family: family}, opts)
+    var xpmServer = xpm.serverCreate(opts)
+    Fiber(function() {
+        //start server
+        xpmServer.require('xiami/boot').run(cb, opts)
+    }).run()
 
-//client static files, in ther production, this must be removed
-xpmClient.add(["meteor/*", "xiami/*"])
-xpmClient.run()
+}

@@ -6,7 +6,7 @@
 require('meteor/meteor'),
 // A standard Meteor app is a web app. (Without this, there will be no
 // 'main' function unless you define one yourself.)
-require('meteor/webapp'),
+global.isServer && require('meteor/webapp'),
 // It's Log! It's better than bad, it's good!
 require('meteor/logging'),
 // Deps.autorun and friends. What's Meteor without reactivity?
@@ -16,7 +16,7 @@ require('meteor/deps'),
 // DDP: Meteor's client/server protocol.
 require('meteor/livedata'),
 // You want to keep your data somewhere? How about MongoDB?
-require('meteor/mongo-livedata'),
+global.isServer && require('meteor/mongo-livedata'),
 // Easy type assertions? check.
 require('meteor/check'),
 // Life isn't always predictable.

@@ -2,6 +2,7 @@ var Meteor = require('meteor/meteor')
 var _ = require('meteor/underscore')
 var Retry = require('meteor/retry')
 var DDP = require('../common/common').DDP
+var Package = {}
 // Meteor.refresh can be called on the client (if you're in common code) but it
 // only has an effect on the server.
 Meteor.refresh = function (notification) {

@@ -4,9 +4,13 @@ Package.describe({
 
 Package.all({
     "imports": [
-        "meteor","webapp",'logging','deps','livedata','mongo-livedata',
+        "meteor",'logging','deps','livedata',
         "check", "random", "ejson"
     ],
     "files": "index.js",
     "main_preload": true
+})
+
+Package.server({
+    "imports": ["mongo-livedata",'webapp']
 })

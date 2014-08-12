@@ -22,4 +22,3 @@ exports.serverCreate = function(opts) {
     return xpmServer
 }
 
-require('./run')(exports)

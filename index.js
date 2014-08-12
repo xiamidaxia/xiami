@@ -8,14 +8,16 @@ var family = {
 }
 
 exports.clientCreate = function(opts) {
-    opts = extend({family: family}, opts)
+    if (opts && opts.family)
+        opts.family = extend({}, family, opts.family)
     var xpmClient = xpm.clientCreate(opts)
     xpmClient.add(["meteor/*", "xiami/*"])
     return xpmClient
 }
 
 exports.serverCreate = function(opts) {
-    opts = extend({family: family}, opts)
+    if (opts && opts.family)
+        opts.family = extend({}, family, opts.family)
     var xpmServer = xpm.serverCreate(opts)
     return xpmServer
 }

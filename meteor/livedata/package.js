@@ -49,6 +49,7 @@ Package.server({
 
 
 Package.client({
+    "imports": "reload",
     "files": "client/*",
     "test_files": "test/client/*"
 })

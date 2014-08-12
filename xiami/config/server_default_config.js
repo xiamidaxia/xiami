@@ -10,6 +10,7 @@ module.exports = {
     "static_prefix"      : "/static",
     "static_maxage"      : 3600000 * 24 * 30,
     "root_url": "http://127.0.0.1:3000",
-    "root_url_prefix":""
+    "root_url_prefix":"",
+    "mail_url": "smtp://exmail.qq.com"
 }
 

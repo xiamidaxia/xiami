@@ -8,9 +8,11 @@
         xpm.config({
             src: "/static"
         })
-        xpm.use("xiami/boot", function(boot){boot.run({}, function() {
-            console.log('client start')
-        })})
+        xpm.use(["xiami/boot"], function(boot){
+            boot.run()
+            xpm.use("common/collections")
+
+        })
     </script>
 </head>
 <body>

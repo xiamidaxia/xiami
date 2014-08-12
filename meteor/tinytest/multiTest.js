@@ -1,7 +1,7 @@
 var _ = require('meteor/underscore')
 var Meteor = require('meteor/meteor')
 var withoutInvocation = function (f) {
-    if (Meteor.DDP) {
+    if (Meteor.DDP && Meteor.DDP._CurrentInvocation) {
         var _CurrentInvocation = Meteor.DDP._CurrentInvocation
         if (_CurrentInvocation.get() && _CurrentInvocation.get().isSimulation)
             throw new Error("Can't set timers inside simulations");

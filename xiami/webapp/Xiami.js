@@ -29,6 +29,7 @@ var Xiami = module.exports = function(clientManifest) {
     this.connectHandler = connect()
     //Webserver
     this.httpServer = null
+    this.isStarted = false
     this._connect()
 }
 require('util').inherits(Xiami, EventEmitter)
@@ -46,6 +47,7 @@ _.extend(Xiami.prototype, {
         self.httpServer.listen(this.getConfig("port"), Meteor.bindEnvironment(function() {
             Log.info('xiami server listeing at ' + self.getConfig('port'))
             self.emit('STARTED')
+            self.isStarted = true
             cb && cb()
         }))
     },

@@ -10,4 +10,5 @@ if (global.isServer) {
     require('./collection')
 } else {
     require('./local_collection_driver')
+    require('./collection')
 }

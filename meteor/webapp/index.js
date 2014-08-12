@@ -28,6 +28,10 @@ WebApp._timeoutAdjustmentRequestCallback = function (req, res) {
 };
 
 Meteor.startup = function(fn) {
+    if (WebApp.isStarted) {
+        fn()
+        return
+    }
     WebApp.on("STARTUP", fn)
 }
 

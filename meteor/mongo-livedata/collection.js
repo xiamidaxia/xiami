@@ -5,7 +5,9 @@ var Random = require('meteor/random')
 var check = require('meteor/check').check
 var Match = require('meteor/check').Match
 var EJSON = require('meteor/ejson')
-var MongoInternals = require('./mongo_driver').MongoInternals
+if (global.isServer) {
+    var MongoInternals = require('./mongo_driver').MongoInternals
+}
 var LocalCollection = require('meteor/minimongo').LocalCollection
 var LocalCollectionDriver = require('./local_collection_driver')
 var Package = {}

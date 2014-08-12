@@ -1,40 +1,12 @@
 var Meteor = require('meteor/meteor')
 var _ = require('meteor/underscore')
 //exports.ReactiveVar = require('./reactivevar')
-_.extend(exports,require('./meteor_test_fixed'))
 
-// Call `fn` periodically until it returns true.  If it does, call
-// `success`.  If it doesn't before the timeout, call `failed`.
-exports.simplePoll = function (fn, success, failed, timeout, step) {
-    timeout = timeout || 10000;
-    step = step || 100;
-    var start = (new Date()).valueOf();
-    var helper = function () {
-        if (fn()) {
-            success();
-            return;
-        }
-        if (start + timeout < (new Date()).valueOf()) {
-            failed();
-            return;
-        }
-        Meteor.setTimeout(helper, step);
-    };
-    helper();
-};
-
-exports.pollUntil = function (expect, f, timeout, step, noFail) {
-    noFail = noFail || false;
-    step = step || 100;
-    var expectation = expect(true);
-    exports.simplePoll(
-        f,
-        function () { expectation(true) },
-        function () { expectation(noFail) },
-        timeout,
-        step
-    );
-};
+exports.meteorTest = require('./meteor_test_fixed').meteorTest
+exports.meteorIt = require('./meteor_test_fixed').meteorIt
+exports.pollUntil = require('./poll').pollUntil
+exports.simplePoll = require('./poll').simplePoll
 exports.ReactiveVar = require('./reactivevar')
 exports.SeededRandom = require('./seeded_random')
 exports.withCallbackLogger = require('./callback_logger')
+exports.makeTestConnection = require('./connection').makeTestConnection

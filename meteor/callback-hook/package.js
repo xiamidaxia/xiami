@@ -3,7 +3,7 @@ Package.describe({
   meteor: "0.8.1.3"
 });
 
-Package.server({
+Package.all({
     imports: "meteor",
     files: "hook.js",
     main: "hook.js"

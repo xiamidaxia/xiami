@@ -1,8 +1,11 @@
 #Xiami
 
-v0.0.2
+v0.0.3
 
 An useful realtime web framework based from [meteor](https://github.com/meteor/meteor)
+
+##examples
+- [xiami_example](https://github.com/xiamidaxia/xiami_examples)
 
 ##what is different from `meteor` ?
 - work well with the node modules, can use `npm` in package file immediately.

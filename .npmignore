@@ -9,3 +9,6 @@ tmp
 /test
 /dest
 /bower_components
+node_modules
+npm-debug.log
+.dest

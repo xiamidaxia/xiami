@@ -5,7 +5,8 @@ Package.describe({
 Package.all({
     "imports": [
         "meteor",'logging','deps','livedata',
-        "check", "random", "ejson","mongo-livedata","session","reload","accounts-base"
+        "check", "random", "ejson","mongo-livedata","session","reload"
+        ,"accounts-base","accounts-password"
     ],
     "files": "index.js",
     "main_preload": true

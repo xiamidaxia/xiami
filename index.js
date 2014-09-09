@@ -1,5 +1,6 @@
 var path = require('path')
-var xpm = require('xpm')
+var xpm = require('xpm2')
+var Fiber = require('fibers')
 var extend = xpm.util.extend
 
 var family = {
@@ -22,3 +23,9 @@ exports.serverCreate = function(opts) {
     return xpmServer
 }
 
+exports.Fiber = function(fn) {
+    Fiber(function() {
+        fn()
+    }).run()
+}
+exports.families = family
